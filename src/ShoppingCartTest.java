@@ -3,7 +3,7 @@
  * 
  * @author Jyoti Chawla
  * @since 15/08/2016
- * @version 1.0
+ * @version 2.0
  */
 import org.junit.Test;
 import org.junit.Before;
@@ -73,7 +73,7 @@ public class ShoppingCartTest {
 		cart.addItem("Apple");
 		cart.addItem("Orange");
 		cart.addItem("Apple");
-		assertEquals(cart.calculateBill(), 2.05, DELTA);
+		assertEquals(cart.calculateBill(), 1.45, DELTA);
 	}
 
 	@Test
@@ -88,6 +88,6 @@ public class ShoppingCartTest {
 		cart.addItem("Apple");
 		cart.addItem("Banana");
 		cart.addItem("Apple");
-		assertEquals(cart.calculateBill(), 1.80, DELTA);
+		assertEquals(cart.calculateBill(), 1.20, DELTA);
 	}
 }

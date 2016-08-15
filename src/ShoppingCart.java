@@ -5,7 +5,7 @@
  * 
  * @author Jyoti Chawla
  * @since 15/08/2016
- * @version 1.0
+ * @version 2.0
  */
 import java.util.ArrayList;
 import java.util.List;
@@ -45,15 +45,27 @@ public class ShoppingCart {
 	public double calculateBill() {
 
 		double bill = 0;
+		int oranges = 0;
+		int apples = 0;
 
 		for (String item : items) {
 			if (item.toLowerCase().contains("orange"))
-				bill += orangePrice;
+				oranges++;
 			else if (item.toLowerCase().contains("apple"))
-				bill += applePrice;
+				apples++;
+			
+			double appleBill = discount(apples, applePrice, 2, 1);
+			double orangeBill = discount(oranges, orangePrice, 3, 2);
+
+			bill = appleBill + orangeBill;
 		}
 
 		return bill;
+	}
+
+	private double discount(int quant, double price, int offerQuant, int offerPrice) {
+		double discountedBill = (((int) (quant / offerQuant)) * price * offerPrice) + (((quant % offerQuant) * price));
+		return discountedBill;
 	}
 
 	/**
@@ -88,7 +100,7 @@ public class ShoppingCart {
 				}
 
 				finalBill = myCart.calculateBill();
-				System.out.println("\n Your bill is £"
+				System.out.println("\n Your bill is £ "
 						+ String.format("%.2f", finalBill));
 				System.out.print("Do you want to continue shopping (y/n)? ");
 				keepShopping = scan.next();
